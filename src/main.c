@@ -55,16 +55,16 @@ int main(void) {
                     drawBox(b1);
 
                     attr_on(A_BOLD, NULL);
-                    addTextToBox(b1, "List", 1);
+                    addTextToBox(b1, "List", 1, CENTER);
                     attr_off(A_BOLD, NULL);
 
                     for (uint i = 0; i < list_len; i++) {
                         if (i + 1 == selected) {
                             attr_on(A_BOLD, NULL);
-                            addTextToBox(b1, list[i], i + 3);
+                            addTextToBox(b1, list[i], i + 3, LEFT);
                             attr_off(A_BOLD, NULL);
                         } else {
-                            addTextToBox(b1, list[i], i + 3);
+                            addTextToBox(b1, list[i], i + 3, LEFT);
                         }
                     }
                     refresh();

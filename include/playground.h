@@ -28,7 +28,9 @@ typedef struct {
 /* Draws the box on the screen */
 void drawBox(Box box);
 
+typedef enum {LEFT, CENTER, RIGHT} Align;
+
 /* Adds text inside the box at a particular line number relative to the box */
-void addTextToBox(Box box, char *text, uint line_num);
+void addTextToBox(Box box, char *text, uint line_num, Align align);
 
 #endif

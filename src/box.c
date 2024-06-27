@@ -28,12 +28,22 @@ void drawBox(Box box) {
     attr_off(A_BOLD, NULL);
 }
 
-void addTextToBox(Box box, char *text, uint line_num) {
-    (void)line_num;
+void addTextToBox(Box box, char *text, uint line_num, Align align) {
     uint text_len = strlen(text);
 
     if (text_len > box.width - 2) PANIC("Text is too long");
     if (line_num > box.height - 2) PANIC("Line number out of bounds");
 
-    mvprintw(box.p.y + line_num, box.p.x + 1, "%s", text);
+    uint x_coord = box.p.x + 1;
+    switch (align) {
+        case LEFT:
+            break;
+        case CENTER:
+            x_coord += (box.width - 2 - text_len) / 2;
+            break;
+        case RIGHT:
+            x_coord += box.width - 2 - text_len;
+            break;
+    }
+    mvprintw(box.p.y + line_num, x_coord, "%s", text);
 }
