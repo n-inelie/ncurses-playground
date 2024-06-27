@@ -3,6 +3,7 @@
 
 #include "colors.h"
 #include "playground.h"
+#include "shorthands.h"
 
 #define COLOR_DARK_ZINC 100
 #define COLOR_PINK 101
@@ -38,28 +39,51 @@ int main(void) {
                 endwin();
                 return 0;
                 break;
-            default:
+            default: {
                 clear();
+                char *list[] = {"item 1", "item 2", "item 3", "item 4", "item 5"};
+                uint list_len = ARR_LEN(list);
+                uint selected = 2;
 
-                Box b1;
-                b1.width = 40;
-                b1.height = 20;
-                b1.color_pair = COLOR_PAIR(4);
-                b1.p = (Point){(LINES - b1.height) / 2, (COLS - b1.width) / 2};
-                drawBox(b1);
+                do {
+                    Box b1;
+                    b1.width = 40;
+                    b1.height = 20;
+                    b1.color_pair = COLOR_PAIR(4);
+                    b1.p =
+                        (Point){(LINES - b1.height) / 2, (COLS - b1.width) / 2};
+                    drawBox(b1);
 
-                attr_on(A_BOLD, NULL);
-                addTextToBox(b1, "List", 1);
-                attr_off(A_BOLD, NULL);
+                    attr_on(A_BOLD, NULL);
+                    addTextToBox(b1, "List", 1);
+                    attr_off(A_BOLD, NULL);
 
-                char *list[] = {"item 1", "item 2", "item 3"};
-                uint list_len = 3;
-                for (uint i = 0; i < list_len; i++) {
-                    addTextToBox(b1, list[i], i + 3);
-                }
-
-                refresh();
-                break;
+                    for (uint i = 0; i < list_len; i++) {
+                        if (i + 1 == selected) {
+                            attr_on(A_BOLD, NULL);
+                            addTextToBox(b1, list[i], i + 3);
+                            attr_off(A_BOLD, NULL);
+                        } else {
+                            addTextToBox(b1, list[i], i + 3);
+                        }
+                    }
+                    refresh();
+                    int ch2 = getch();
+                    switch (ch2) {
+                        case 'q':
+                            endwin();
+                            return 0;
+                            break;
+                        case 'k':
+                            if (selected > 1) selected--;
+                            break;
+                        case 'j':
+                            if (selected < list_len) selected++;
+                        default:
+                            break;
+                    }
+                } while (1);
+            } break;
         }
     }
 
