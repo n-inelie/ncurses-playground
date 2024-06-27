@@ -12,4 +12,9 @@ typedef unsigned long ulong;
         }                                \
     } while (0)
 
+#define RUNBLOCK(expr) \
+    do {               \
+        expr           \
+    } while (0)
+
 #endif
