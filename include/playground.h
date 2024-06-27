@@ -25,6 +25,10 @@ typedef struct {
     uint color_pair;
 } Box;
 
+/* Draws the box on the screen */
 void drawBox(Box box);
+
+/* Adds text inside the box at a particular line number relative to the box */
+void addTextToBox(Box box, char *text, uint line_num);
 
 #endif
