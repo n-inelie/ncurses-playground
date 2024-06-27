@@ -41,7 +41,8 @@ int main(void) {
                 break;
             default: {
                 clear();
-                char *list[] = {"item 1", "item 2", "item 3", "item 4", "item 5"};
+                char *list[] = {"item 1", "item 2", "item 3", "item 4",
+                                "item 5"};
                 uint list_len = ARR_LEN(list);
                 uint selected = 2;
 
@@ -59,12 +60,14 @@ int main(void) {
                     attr_off(A_BOLD, NULL);
 
                     for (uint i = 0; i < list_len; i++) {
+                        char text[16];
+                        sprintf(text, "(%d) %s", i + 1, list[i]);
                         if (i + 1 == selected) {
                             attr_on(A_BOLD, NULL);
-                            addTextToBox(b1, list[i], i + 3, LEFT);
+                            addTextToBox(b1, text, i + 3, LEFT);
                             attr_off(A_BOLD, NULL);
                         } else {
-                            addTextToBox(b1, list[i], i + 3, LEFT);
+                            addTextToBox(b1, text, i + 3, LEFT);
                         }
                     }
                     refresh();
