@@ -39,11 +39,14 @@ int main(void) {
             default:
                 clear();
 
-                attr_on(A_BOLD, NULL);
-                attr_on(COLOR_PAIR(2), NULL);
-                PRINT_MIDDLE("hello, world", LINES, COLS);
-                attr_off(COLOR_PAIR(2), NULL);
-                attr_off(A_BOLD, NULL);
+                Box b1 = {(Point){1, 1}, 10, 10, COLOR_PAIR(1)};
+                drawBox(b1);
+                
+                // attr_on(A_BOLD, NULL);
+                // attr_on(COLOR_PAIR(2), NULL);
+                // PRINT_MIDDLE("hello, world", LINES, COLS);
+                // attr_off(COLOR_PAIR(2), NULL);
+                // attr_off(A_BOLD, NULL);
 
                 refresh();
                 break;

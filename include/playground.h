@@ -1,6 +1,8 @@
 #ifndef PLAYGROUND_H
 #define PLAYGROUND_H
 
+#include "shorthands.h"
+
 #define PRINT_MIDDLE_OFFSET(text, height, width, y_offset, x_offset) \
     do {                                                             \
         int text_len = strlen(text);                                 \
@@ -11,5 +13,18 @@
 #define PRINT_MIDDLE(text, height, width) \
     PRINT_MIDDLE_OFFSET(text, height, width, 0, 0)
 
+typedef struct {
+    uint y;
+    uint x;
+} Point;
+
+typedef struct {
+    Point p;
+    uint height;
+    uint width;
+    uint color_pair;
+} Box;
+
+void drawBox(Box box);
 
 #endif

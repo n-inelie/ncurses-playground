@@ -23,7 +23,7 @@ $(BUILD_DIR)/%.o: $(SOURCE_DIR)/%.c
 .PHONY: clean
 
 clean:
-	rm -f $(BUILD_DIR)/*.o $(TARGET)
+	rm -rf $(BUILD_DIR) $(TARGET)
 
 debug: CFLAGS += $(DEBUG_FLAGS)
 debug: $(TARGET)
