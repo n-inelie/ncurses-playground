@@ -1,7 +1,11 @@
 #include <ncurses.h>
 #include <string.h>
 
+#include "colors.h"
 #include "playground.h"
+
+#define COLOR_DARK_ZINC 100
+#define COLOR_PINK 101
 
 int main(void) {
     initscr();
@@ -11,7 +15,11 @@ int main(void) {
     keypad(stdscr, true);
     noecho();
 
+    initHexColor(COLOR_PINK, "#e224a9");
+    initHexColor(COLOR_DARK_ZINC, "#09090b");
+
     init_pair(1, COLOR_RED, COLOR_BLACK);
+    init_pair(2, COLOR_PINK, COLOR_DARK_ZINC);
 
     attr_on(A_BOLD, NULL);
     PRINT_MIDDLE("Welcome to umm... where again?!", LINES, COLS);
@@ -32,7 +40,9 @@ int main(void) {
                 clear();
 
                 attr_on(A_BOLD, NULL);
+                attr_on(COLOR_PAIR(2), NULL);
                 PRINT_MIDDLE("hello, world", LINES, COLS);
+                attr_off(COLOR_PAIR(2), NULL);
                 attr_off(A_BOLD, NULL);
 
                 refresh();
