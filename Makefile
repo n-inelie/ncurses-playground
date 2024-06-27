@@ -18,7 +18,7 @@ $(TARGET): $(OBJECTS)
 
 
 $(BUILD_DIR)/%.o: $(SOURCE_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -c $< -o $@
 
 .PHONY: clean
 

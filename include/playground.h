@@ -31,6 +31,9 @@ void drawBox(Box box);
 typedef enum {LEFT, CENTER, RIGHT} Align;
 
 /* Adds text inside the box at a particular line number relative to the box */
-void addTextToBox(Box box, char *text, uint line_num, Align align);
+void boxAddTextToLine(Box box, char *text, uint line_num, Align align);
+
+/* Clear a particular line within a box */
+void boxClearLine(Box box, uint line_num);
 
 #endif

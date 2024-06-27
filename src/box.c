@@ -28,7 +28,7 @@ void drawBox(Box box) {
     attr_off(A_BOLD, NULL);
 }
 
-void addTextToBox(Box box, char *text, uint line_num, Align align) {
+void boxAddTextToLine(Box box, char *text, uint line_num, Align align) {
     uint text_len = strlen(text);
 
     if (text_len > box.width - 2) PANIC("Text is too long");
@@ -46,4 +46,9 @@ void addTextToBox(Box box, char *text, uint line_num, Align align) {
             break;
     }
     mvprintw(box.p.y + line_num, x_coord, "%s", text);
+}
+
+void boxClearLine(Box box, uint line_num) {
+    if (line_num > box.height - 2) PANIC("Line number out of bounds");
+    REPEAT(box.width-2, mvaddch(box.p.x + line_num, box.p.y + 1 + i, ' '););
 }

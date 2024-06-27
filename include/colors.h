@@ -3,6 +3,10 @@
 
 #include "shorthands.h"
 
+#define COLOR_DARK_ZINC 100
+#define COLOR_PINK 101
+#define COLOR_PRETTY_WHITE 102
+
 typedef struct {
     ushort r;
     ushort g;

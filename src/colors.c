@@ -34,7 +34,7 @@ void hexToRGB(HexColor hex, RGBColor *rgb) {
 }
 
 inline void initRGBColor(short color_num, RGBColor rgb) {
-    init_color(color_num, rgb.r, rgb.b, rgb.r);
+    init_color(color_num, rgb.r*1000/255, rgb.b*1000/255, rgb.r*1000/255);
 }
 
 inline void initHexColor(short color_num, HexColor hex) {
