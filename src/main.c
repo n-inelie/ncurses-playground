@@ -1,15 +1,7 @@
 #include <ncurses.h>
 #include <string.h>
 
-#define PRINT_MIDDLE_OFFSET(text, height, width, y_offset, x_offset) \
-    do {                                                             \
-        int text_len = strlen(text);                                 \
-        mvprintw((height / 2) + y_offset,                            \
-                 (width / 2) + x_offset - text_len / 2, text);       \
-    } while (0)
-
-#define PRINT_MIDDLE(text, height, width) \
-    PRINT_MIDDLE_OFFSET(text, height, width, 0, 0)
+#include "playground.h"
 
 int main(void) {
     initscr();
@@ -18,13 +10,24 @@ int main(void) {
     keypad(stdscr, true);
     noecho();
 
+    attr_on(A_BOLD, NULL);
+    PRINT_MIDDLE("Welcome to umm... where again?!", LINES, COLS);
+    attr_off(A_BOLD, NULL);
+    PRINT_MIDDLE_OFFSET("Press any key to continue...", LINES, COLS, 1, 0);
     while (1) {
         int ch = getch();
         switch (ch) {
             case 'q':
+                endwin();
                 return 0;
+                break;
             default:
+                clear();
+                attr_on(A_BOLD, NULL);
                 PRINT_MIDDLE("hello, world", LINES, COLS);
+                attr_off(A_BOLD, NULL);
+                refresh();
+                break;
         }
     }
 
