@@ -5,6 +5,8 @@ typedef unsigned int uint;
 typedef unsigned short ushort;
 typedef unsigned long ulong;
 
+#define ARR_LEN(arr) sizeof(arr) / sizeof(arr[0])
+
 #define REPEAT(n, expr)                  \
     do {                                 \
         for (size_t i = 0; i < n; i++) { \
